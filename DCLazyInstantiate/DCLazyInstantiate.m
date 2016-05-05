@@ -119,10 +119,10 @@ DEF_SINGLETON(DCLazyInstantiate);
                     
                     // Check for "readonly" attribute
                     if ([searchedString containsString:@"readonly"]) {
-                        result = [NSString stringWithFormat:@"- (%@ *)%@ {\n\treturn [[%@ alloc] init];\n}\n\n",
+                        result = [NSString stringWithFormat:@"- (%@ *)%@ {\n\treturn [%@ autolayoutView];\n}\n\n",
                                   class, varName, class];
                     } else {
-                        result = [NSString stringWithFormat:@"- (%@ *)%@ {\n\tif(_%@ == nil) {\n\t\t_%@ = [[%@ alloc] init];\n\t}\n\treturn _%@;\n}\n\n",
+                        result = [NSString stringWithFormat:@"- (%@ *)%@ {\n\tif(_%@ == nil) {\n\t\t_%@ = [%@ autolayoutView];\n\t}\n\treturn _%@;\n}\n\n",
                                   class, varName, varName, varName, class, varName];
                     }
                 }
